@@ -15,9 +15,9 @@ session_start();
     <div class="modal-content">
       <div class="form-style">
         <form action="../php/login.php" method="post">
+        <span class="close">&times;</span>
         <div id="legend">Connection</div>
           <fieldset>
-            <span class="close">&times;</span>
               <label for="email">Email</label>
               <input type="email" placeholder="Entrez votre email" name="email" maxlenght="64" required>
               <label for="pswd">Mot de passe</label>
