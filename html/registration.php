@@ -13,24 +13,7 @@
   </head>
   <body>
   <!-- Barre de naviguation -->
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav navbar-center">
-        <a class="navbar-brand" href="#">RGraphy</a>
-      </ul>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a href="../index.php">Home</a></li>
-        <li><a href="./produits.php">Produits</a></li>
-        <li><a href="./contact.php">Contact</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a id="login-btn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>  
-  </nav>
-
+ <?php include('./navbar.php');?>
 
 <!-- Formulaire Inscription -->
   <div class="form-style">
@@ -38,7 +21,8 @@
       <fieldset>  
         <div id="legend"> Inscription </div>
             <label for="email">Email</label>
-            <?php echo $_SESSION["error"]; ?>  
+            <?php echo $_SESSION["reg_error"]; unset($_SESSION['reg_error']);
+            ?>  
             <input type="email" placeholder="Entrez votre email" name="email" maxlenght="64" required>
 
             <label for="pswd">Mot de passe</label>
