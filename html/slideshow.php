@@ -30,6 +30,7 @@ session_start();
   </head>
   <body>
   
+  
 <?php 
 include('./secret/mdp.php');
 try
@@ -37,7 +38,8 @@ try
 
 catch(Exception $e)
     {die('Erreur : '.$e->getMessage());}  // arrêt en cas d'erreur
-    
+
+// Requete permettant de récupérer toutes les informations sur le produit
 $products_info = $bdd->prepare("select * from produit");
 $products_info->execute();
 $products_info = $products_info->fetchAll();
@@ -45,39 +47,45 @@ $products_info = $products_info->fetchAll();
 
 <!-- Slideshow pour images produit -->
 
-<a href="#" class="show_hide"><div class="w3-content w3-display-container ">
+<div class="w3-content w3-display-container ">
 <?php 
+// php pour récupérer les images à afficher dans le slideshow
 foreach($products_info as $row) {
   $image = $row['image'];
   echo "<img class='mySlides' src='./images/{$image}'>"; 
 }?>
-
 <div class='w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle' style='width:100%'>
-  <div class='w3-left w3-hover-text-khaki' onclick='plusDivs(-1)'>&#10094;</div>
+  <div class='w3-left w3-hover-text-khaki' onclick='plusDiv-white' onclick='currentDiv(1)'></span>
+  <span class='w3-badge demo w3-border w3-transparent w3-hovers(-1)'>&#10094;</div>
   <div class='w3-right w3-hover-text-khaki' onclick='plusDivs(1)'>&#10095;</div>
-  <span class='w3-badge demo w3-border w3-transparent w3-hover-white' onclick='currentDiv(1)'></span>
   <span class='w3-badge demo w3-border w3-transparent w3-hover-white' onclick='currentDiv(2)'></span>
   <span class='w3-badge demo w3-border w3-transparent w3-hover-white' onclick='currentDiv(3)'></span>
   <span class='w3-badge demo w3-border w3-transparent w3-hover-white' onclick='currentDiv(4)'></span>
   <span class='w3-badge demo w3-border w3-transparent w3-hover-white' onclick='currentDiv(5)'></span>
 </div>
-</div></a>
+</div>
+<!-- fin du slideshow -->
 
+<!-- ajout d'un bouton acheter qui fera apparaitre un nouveau sideshow avec les informations sur le produit -->
+<div class="w3-content show_hide product-info buy-container" style="left:200px">Acheter</div>
 <div class="w3-content product-info slidingDiv">
   <p>Here is some text</p>
 </div>
 
 
 
-<!-- script permettant de gérer les 2 slideshows -->
+<!-- script permettant de gérer le slideshow et le text qui slide-->
 <script>
+// function pour le slideshow apparaissant sur l'écran
   $(".slidingDiv").hide();
 
   $('.show_hide').click(function() {
     $(this).next(".slidingDiv").slideToggle();
+    
  });
+// fin de la function pour le slideshow apparaissant à l'écran
 
-
+// functions pour le slideshow
 var slideIndex = 1;
 showDivs(slideIndex);
 
@@ -104,6 +112,7 @@ function showDivs(n) {
   x[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " w3-white";
 }
+// fin de la fonction pour le slideshow
 </script>
 
 </body>
