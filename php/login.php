@@ -4,7 +4,6 @@ include('../secret/mdp.php');
 //------- recupération des valeurs du formulaire--------------
 $email=$_POST['email'];
 $pswd=$_POST['pswd'];
-$_SESSION["logged"] = False;
 // ------ importation des variables de connexion ----------------
 
 // ------ connexion à la base de données ------------------------
@@ -15,7 +14,7 @@ catch(Exception $e)
 	{die('Erreur : '.$e->getMessage());}  // arrêt en cas d'erreur
 
 // Requête reprenant les informations nécessaires
-$req = $bdd->prepare("select id, email, mdp, nb_connection from client where email like :email");
+$req = $bdd->prepare("select id, email, mdp, nom, prenom, nb_connection from client where email like :email");
 $req->bindValue(":email", $email, PDO::PARAM_STR);
 $req->execute();
 $req = $req->fetch();
@@ -31,7 +30,6 @@ else {
 	// Check si l'addresse mail correspond avec le mot de passe entré que l'on vérifie en bcrypt
 	if($req['email'] === $email && password_verify($pswd, $req['mdp'])) {
 		// Variable de session signifiant si l'utilisateur est connecté ou non
-		$_SESSION["logged"] = True;
 		// Requête changant la dernière date de connection de l'utilisateur
 		$lastconnection_updater = $bdd->prepare("update client set last_connection = :last_connection where email like :email");
 		$lastconnection_updater -> bindValue(":last_connection", $last_connection, PDO::PARAM_STR);
@@ -42,8 +40,12 @@ else {
 		$nb_connection_updater -> bindValue(":email", $email, PDO::PARAM_STR);
 		$nb_connection_updater -> execute();
 
+		$_SESSION['logged'] = True;
+		$_SESSION['name'] = $req['nom'];
+		$_SESSION['fname'] = $req['prenom'];
 		// Retour à la page d'accueil
 		header("Location:../index.php");
+
 		exit();
 
 	}
@@ -53,9 +55,10 @@ else {
 		// Décrémentation du nombre de connection valide à l'utilisateur
 		$nbconnection_updater = $bdd->prepare("update client set nb_connection = nb_connection - 1 where email like :email");
 		$nbconnection_updater->bindValue(":email", $email, PDO::PARAM_STR);
-		$nbconnection_updater->execute(); 
+		$nbconnection_updater->execute(); 	
 		// Message d'erreur qui sera affiché sur la page html
-		$error = "La combinaison de l'addresse email ne correspond pas avec le mot de passe";
+		$_SESSION["error"] = "La combinaison de l'addresse email ne correspond pas avec le mot de passe";
+		header("Location:../index.php");
 	}}
 $bdd->closeCursor();
 ?>
