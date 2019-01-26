@@ -20,29 +20,7 @@ session_start();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
-
-  <!-- Barre de naviguation -->
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav navbar-center">
-        <a class="navbar-brand" href="#">RGraphy</a>
-      </ul>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a href="../index.php">Home</a></li>
-        <li><a href="./produits.php">Produits</a></li>
-        <li><a href="./contact.php">Contact</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="./html/registration.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a id="login-btn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>  
-  </nav>
-
-
-
-  
+  <?php include('./html/navbar.php'); ?>
   <?php include('./html/slideshow.php');?>
   <?php include('./html/login.php');?>
   </body>
