@@ -27,7 +27,7 @@ $check_if_exists -> execute();
 $check_if_exists = $check_if_exists -> Fetch();
 if($check_if_exists[0] > 0) {
 	// Message d'erreur qui sera affiché sur la page html
-	$_SESSION["error"] = "Cette addresse email est déjà utilisée"; 
+	$_SESSION["reg_error"] = "Cette addresse email est déjà utilisée"; 
 	// Redirection vers la page d'inscription en affichant le message d'erreur
 	header("Location:../html/registration.php");
 }
