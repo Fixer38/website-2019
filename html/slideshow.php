@@ -19,6 +19,7 @@
   </head>
   <body>
 
+<!-- Slideshow pour images produit -->
 <div class="w3-content w3-display-container right-content" style="max-width:50%">
   <img class="mySlides" src="./images/registration-background.jpg" style="width:100%">
   <img class="mySlides" src="./images/registration-background.jpg" style="width:100%">
@@ -34,6 +35,8 @@
   </div>
 </div>
 
+
+<!-- Slideshow pour description produit -->
 <div class="w3-content w3-display-container left-content" style="max-width:50%">
   <div class="mySlides2"style="width:100%"><h1>There is some text</h1></div>
   <div class="mySlides2"style="width:100%"><h1>There is some text2</h1></div>
@@ -44,6 +47,8 @@
   </div>
 </div>
 
+
+<!-- script permettant de gérer les 2 slideshows -->
 <script>
 var slideIndex = 1;
 showDivs(slideIndex);
@@ -90,5 +95,6 @@ function showDivs2(n) {
   dots[slideIndex-1].className += " w3-white";
 }
 </script>
+
 </body>
 </html>
