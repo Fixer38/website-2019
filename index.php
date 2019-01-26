@@ -23,5 +23,6 @@ session_start();
   <?php include('./html/navbar.php'); ?>
   <?php include('./html/slideshow.php');?>
   <?php include('./html/login.php');?>
+  
   </body>
 </html>
