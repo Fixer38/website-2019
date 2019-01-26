@@ -14,10 +14,19 @@ session_start();
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <div class="form-style">
-        <form action="../php/login.php" method="post">
+      <!-- changement du chemin vers /php/login.php si la page est l'index
+      car inclusion du fichier dans toutes les pages -->
+      <?php if ($_SERVER['REQUEST_URI'] === '/tfe/' || $_SERVER['REQUEST_URI'] === '/tfe/index.php') {
+        echo "<form action='./php/login.php' method='post'>";
+      } 
+      else {
+        echo "<form action='../php/login.php' method='post'>";
+      }?>
+      
         <span class="close">&times;</span>
         <div id="legend">Connection</div>
           <fieldset>
+              <?php echo $_SESSION["error"]; unset($_SESSION["error"]);?>
               <label for="email">Email</label>
               <input type="email" placeholder="Entrez votre email" name="email" maxlenght="64" required>
               <label for="pswd">Mot de passe</label>
