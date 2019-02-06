@@ -4,8 +4,6 @@ include('../secret/mdp.php');
 //------- recupération des valeurs du formulaire--------------
 $email=$_POST['email'];
 $pswd=$_POST['pswd'];
-// ------ importation des variables de connexion ----------------
-
 // ------ connexion à la base de données ------------------------
 try
 	{$bdd = new PDO("mysql:host=$host;dbname=$db", $user, $userpswd);}
@@ -43,6 +41,11 @@ else {
 		$_SESSION['logged'] = True;
 		$_SESSION['name'] = $req['nom'];
 		$_SESSION['fname'] = $req['prenom'];
+		$_SESSION['idclient'] = $req['id'];
+		$_SESSION['panier'] = array();
+		$_SESSION['panier']['codeproduit'] = array();
+		$_SESSION['panier']['quantite'] = array();
+
 		// Retour à la page d'accueil
 		header("Location:../index.php");
 
