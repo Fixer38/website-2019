@@ -17,7 +17,8 @@ session_start();
           </ul>
           <ul class='nav navbar-nav navbar-right'>";
             if ($_SESSION['logged'] === True) {
-                echo "<li><a href='./html/profile.php>'<span class='glyphicon glyphicon-user'></span> ".ucfirst($_SESSION['fname'])."</a></li>";
+                echo "<li><a href='./html/profile.php'><span class='glyphicon glyphicon-user'></span> ".ucfirst($_SESSION['fname'])."</a></li>";
+                echo "<li><a href='./html/basket.php'><span class='glyphicon glyphicon-shopping-cart'></span></li>";
                 echo "<li><a href='./php/logout.php'><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
             }
             else {
@@ -32,8 +33,9 @@ session_start();
           </ul>
           <ul class='nav navbar-nav navbar-right'>";
           if ($_SESSION['logged'] === True) {
-            echo "<li><a href='./profile.php'><span class='glyphicon glyphicon-user'></span>".$_SESSION['fname']+$_SESSION['name']."</a></li>
-            <li><a href='../php/logout.php'><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
+            echo "<li><a href='./profile.php'><span class='glyphicon glyphicon-user'></span>".ucfirst($_SESSION['fname'])."</a></li>";
+            echo "<li><a href='./basket.php'><span class='glyphicon glyphicon-shopping-cart'></span></li>";
+            echo "<li><a href='../php/logout.php'><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
           }
           else {
             echo "<li><a href='./registration.php'><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>
