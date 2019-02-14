@@ -9,18 +9,25 @@ catch(Exception $e)
 	{die('Erreur : '.$e->getMessage());} // arrêt en cas d'erreur
 
 if($_SESSION['logged'] === True) {
-	for($i=0; $i<sizeof($_SESSION['images']); $i++) {
-		$buttoname = "quantity{$i}";
-		if(!empty($_POST[$buttoname])) {
-			$_SESSION['panier']['codeproduit'][] = $_SESSION['idproducts'][$i];
-			$_SESSION['panier']['quantite'][] = $_POST[$buttoname];
-			header('Location:../index.php');
-			exit();	 
+		for($i=0; $i<sizeof($_SESSION['images']); $i++) {
+			$buttoname = "quantity{$i}";
+			if(!empty($_POST[$buttoname])) {
+				if(in_array($_SESSION['idproducts'][$i], $_SESSION['panier']['codeproduit'])) {
+					$_SESSION['panier']['quantite'][$i] = $_SESSION['panier']['quantite'][$i] + $_POST[$buttoname];
+					if($_SESSION['panier']['quantite'][$i] > $_SESSION['stocks'][$i]) {
+						$_SESSION['panier']['quantite'][$i] = $_SESSION['stocks'][$i];
+					}
+				}
+				else {$_SESSION['panier']['codeproduit'][] = $_SESSION['idproducts'][$i];
+				$_SESSION['panier']['quantite'][] = $_POST[$buttoname];
+				}
+				header('Location:../index.php');
+				exit();	 
+			}
 		}
-	}
 }
 else {
-	header("Location:../index.php");
+	header("Location:../index.php?logged=false");
 	exit();
 }
 
