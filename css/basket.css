@@ -1,7 +1,7 @@
 .grid-container {
     display: inline-grid;
-    grid-template-columns: 200px 600px 200px;
-    grid-gap: 10px;
+    grid-template-columns: 100px 100px 600px 100px 100px;
+    grid-gap: 7px;
     padding: 5px;
     position: absolute;
     top: 20%;
@@ -9,16 +9,31 @@
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
+    background-color: GhostWhite;
 }
 
 .grid-container > div {
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 20px;    
 }
 
 img.resize {
     width: 100px;
     height: 100px;
+}
+
+.btn-plus {
+    position: relative;
+    left: 10%;
+    border: 0;
+    background-color: white;
+}
+.btn-minus {
+    position: relative;
+    right: 10%;
+    border: 0;
+    background-color: white;
 }
