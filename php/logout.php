@@ -1,6 +1,5 @@
 <?php
 session_start();
-unset($_SESSION['logged']);
-unset($_SESSION['panier']);
+session_destroy();
 header("Location:../index.php");
 ?>
