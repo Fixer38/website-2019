@@ -16,7 +16,7 @@ session_start();
       <div class="form-style">
       <!-- changement du chemin vers /php/login.php si la page est l'index
       car inclusion du fichier dans toutes les pages -->
-      <?php if ($_SERVER['REQUEST_URI'] === '/tfe/' || $_SERVER['REQUEST_URI'] === '/tfe/index.php') {
+      <?php if ($_SERVER['REQUEST_URI'] === '/tfe/' || strpos($_SERVER['REQUEST_URI'], 'index.php')) {
         echo "<form action='./php/login.php' method='post'>";
       } 
       else {
