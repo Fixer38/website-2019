@@ -19,13 +19,22 @@ session_start();
   <body>
 <?php include('./navbar.php'); ?>
 
-<div class="grid-container">
 <?php
+if (!empty($_SESSION['panier']['codeproduit'])) {
+  echo "<div class='grid-container'>";
 for($i=0;$i<sizeof($_SESSION['panier']['codeproduit']);$i++) {
     $product_number = $_SESSION['panier']['codeproduit'][$i]-1;
+    $remove = "remove{$i}";
+    echo "<div><form action='../php/removeitem.php' method='post'><input type='submit' value='x' name=$remove class='btn-minus'></form></div>";
     echo "<div><img class='resize' src='../images/{$_SESSION['images'][$product_number]}'></div>";
     echo "<div>{$_SESSION['descriptions'][$product_number]}</div>";
+    $add = "add{$i}";
+    $minus = "minus{$i}";
+    echo "<div><form action='../php/incrementquant.php' method='post'><input type='submit' value='-' name=$minus class='btn-minus'><input type='submit' value='+' name=$add class='btn-plus'></form></div>";
     echo "<div>{$_SESSION['panier']['quantite'][$i]}</div>";
+}}
+else {
+  echo "<div>Votre panier est vide</div>";
 }
 ?>
 </div>
