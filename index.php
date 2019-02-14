@@ -23,6 +23,10 @@ session_start();
   <?php include('./html/navbar.php'); ?>
   <?php include('./html/slideshow.php');?>
   <?php include('./html/login.php');?>
-  
+  <?php
+  if($_SERVER['REQUEST_URI'] === '/tfe/index.php?logged=false') {
+  echo "<script type='text/javascript'>document.getElementById('login-btn').click();</script>";
+}
+?>
   </body>
 </html>
