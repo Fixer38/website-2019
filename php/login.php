@@ -12,7 +12,7 @@ catch(Exception $e)
 	{die('Erreur : '.$e->getMessage());}  // arrêt en cas d'erreur
 
 // Requête reprenant les informations nécessaires
-$req = $bdd->prepare("select id, email, mdp, nom, prenom, nb_connection from client where email like :email");
+$req = $bdd->prepare("select id, email, mdp, nom, prenom, rue, localite, cp, num_maison, nb_connection from client where email like :email");
 $req->bindValue(":email", $email, PDO::PARAM_STR);
 $req->execute();
 $req = $req->fetch();
@@ -36,7 +36,7 @@ if($req['nb_connection'] === 0) {
 else {
 	// Check si l'addresse mail correspond avec le mot de passe entré que l'on vérifie en bcrypt
 	if($req['email'] === $email && password_verify($pswd, $req['mdp'])) {
-		// Variable de session signifiant si l'utilisateur est connecté ou non
+		$last_connection = date("Y/m/d");		
 		// Requête changant la dernière date de connection de l'utilisateur
 		$lastconnection_updater = $bdd->prepare("update client set last_connection = :last_connection where email like :email");
 		$lastconnection_updater -> bindValue(":last_connection", $last_connection, PDO::PARAM_STR);
@@ -51,6 +51,10 @@ else {
 		$_SESSION['name'] = $req['nom'];
 		$_SESSION['fname'] = $req['prenom'];
 		$_SESSION['idclient'] = $req['id'];
+		$_SESSION['street'] = $req['rue'];
+		$_SESSION['localite'] = $req['localite'];
+		$_SESSION['cp'] = $req['cp'];
+		$_SESSION['hnumber'] = $req['num_maison'];
 		$_SESSION['panier'] = array();
 		$_SESSION['panier']['codeproduit'] = array();
 		$_SESSION['panier']['quantite'] = array();
