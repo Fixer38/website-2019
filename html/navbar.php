@@ -12,7 +12,6 @@ session_start();
         <!-- changement des chemins vers les différentes pages si l'on click sur la navbar depuis l'index ou non -->
         <?php if ($_SERVER['REQUEST_URI'] === '/tfe/' || $_SERVER['REQUEST_URI'] === '/tfe/index.php') {
             echo "<li><a href='./index.php'>Home</a></li>
-            <li><a href='./html/produits.php'>Produits</a></li>
             <li><a href='./html/contact.php'>Contact</a></li>
           </ul>
           <ul class='nav navbar-nav navbar-right'>";
@@ -28,7 +27,6 @@ session_start();
         }
         else {
             echo "<li><a href='../index.php'>Home</a></li>
-            <li><a href='./produits.php'>Produits</a></li>
             <li><a href='./contact.php'>Contact</a></li>
           </ul>
           <ul class='nav navbar-nav navbar-right'>";
