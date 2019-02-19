@@ -1,10 +1,14 @@
+.absolute {
+    position: absolute;
+    top: 25%;
+    left: 22.5%;
+}
 .grid-container {
     display: inline-grid;
-    grid-template-columns: 100px 100px 600px 100px 100px;
+    grid-template-columns: 100px 100px 600px 100px 100px 100px;
     grid-gap: 7px;
     padding: 5px;
-    position: absolute;
-    top: 20%;
+    position: relative;
     left: 50%;
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
@@ -13,7 +17,7 @@
 }
 
 .grid-container > div {
-    background-color: white;
+    background-color: Ghostwhite;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,11 +33,11 @@ img.resize {
     position: relative;
     left: 10%;
     border: 0;
-    background-color: white;
+    background-color: Ghostwhite;
 }
 .btn-minus {
     position: relative;
     right: 10%;
     border: 0;
-    background-color: white;
+    background-color: Ghostwhite;
 }
