@@ -36,6 +36,9 @@
             
             <label for="rue">Rue</label>
             <input type="text" placeholder="Entrez votre rue" name="rue" maxlenght="40" required>
+
+            <label for="localite">Localité</label>
+            <input type="text" placeholder="Entrez votre localite" name="localite" maxlenght="40" required>
             
             <label for="cp">Code postal</label>
             <input type="text" placeholder="Entrez votre code postal" name="cp" maxlenght="4" required>
