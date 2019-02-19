@@ -7,6 +7,7 @@ $pswd=$_POST['pswd'];
 $nom=$_POST['nom'];
 $prenom=$_POST['prenom'];
 $rue=$_POST['rue'];
+$localite = $_POST['localite'];
 $cp=$_POST['cp'];
 $num_maison=$_POST['num_maison'];
 $tel=$_POST['tel'];
@@ -41,12 +42,13 @@ else {
 	$pswd = password_hash($pswd, PASSWORD_BCRYPT, $options);
 
 	// Insertion des informations données par l'utilisateur dans la base de données
-	$req = $bdd->prepare("insert into client VALUES(null, :email, :pswd, :nom, :prenom, :rue, :cp, :num_maison, :tel, null, 3)");
+	$req = $bdd->prepare("insert into client VALUES(null, :email, :pswd, :nom, :prenom, :rue, :localite, :cp, :num_maison, :tel, null, 3)");
 	$req -> bindValue(":email", $email, PDO::PARAM_STR);
 	$req -> bindValue(":pswd", $pswd, PDO::PARAM_STR);
 	$req -> bindValue(":nom", $nom, PDO::PARAM_STR);
 	$req -> bindValue(":prenom", $prenom, PDO::PARAM_STR);
 	$req -> bindValue(":rue", $rue, PDO::PARAM_STR);
+	$req -> bindValue(":localite", $localite, PDO::PARAM_STR);
 	$req -> bindValue(":cp", $cp, PDO::PARAM_STR);
 	$req -> bindValue(":num_maison", $num_maison, PDO::PARAM_STR);
 	$req -> bindValue(":tel", $tel, PDO::PARAM_STR);
