@@ -20,9 +20,13 @@ session_start();
 <?php include('./navbar.php'); ?>
 
 <?php
+echo "<div class='textbox' style='clear: both;'>";
+echo "<p class='alignleft'>".$_SESSION['street']." ".$_SESSION['hnumber']."</p>";
+echo "<p class='alignright'>".$_SESSION['localite']." ".$_SESSION['cp']."</p></div>";
 if (!empty($_SESSION['panier']['codeproduit'])) {
+  echo  "<div class='absolute'>";
   echo "<div class='grid-container'>";
-for($i=0;$i<sizeof($_SESSION['panier']['codeproduit']);$i++) {
+  for($i=0;$i<sizeof($_SESSION['panier']['codeproduit']);$i++) {
     $product_number = $_SESSION['panier']['codeproduit'][$i]-1;
     $remove = "remove{$i}";
     echo "<div><form action='../php/removeitem.php' method='post'><input type='submit' value='x' name=$remove class='btn-minus'></form></div>";
@@ -32,9 +36,21 @@ for($i=0;$i<sizeof($_SESSION['panier']['codeproduit']);$i++) {
     $minus = "minus{$i}";
     echo "<div><form action='../php/incrementquant.php' method='post'><input type='submit' value='-' name=$minus class='btn-minus'><input type='submit' value='+' name=$add class='btn-plus'></form></div>";
     echo "<div>{$_SESSION['panier']['quantite'][$i]}</div>";
-}}
+    $total += $_SESSION['prices'][$i] * $_SESSION['panier']['quantite'][$i];
+    $current = $_SESSION['prices'][$i] * $_SESSION['panier']['quantite'][$i];
+    echo "<div>{$current}</div>";
+    if($i === sizeof($_SESSION['panier']['codeproduit'])-1) {
+      echo "<div></div>";
+      echo "<div></div>";
+      echo "<div></div>";
+      echo "<div></div>";
+      echo "<div>Total</div>";
+      echo "<div>{$total}</div></div></div>";
+    }
+  } 
+}
+
 else {
   echo "<div>Votre panier est vide</div>";
 }
 ?>
-</div>
