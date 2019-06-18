@@ -8,24 +8,27 @@ try
 catch(Exception $e)
 	{die('Erreur : '.$e->getMessage());} // arrêt en cas d'erreur
 
-if($_SESSION['logged'] === True) {
-		for($i=0; $i<sizeof($_SESSION['images']); $i++) {
-			$buttoname = "quantity{$i}";
-			if(!empty($_POST[$buttoname])) {
-				if(in_array($_SESSION['idproducts'][$i], $_SESSION['panier']['codeproduit'])) {
-					$_SESSION['panier']['quantite'][$i] = $_SESSION['panier']['quantite'][$i] + $_POST[$buttoname];
-					if($_SESSION['panier']['quantite'][$i] > $_SESSION['stocks'][$i]) {
-						$_SESSION['panier']['quantite'][$i] = $_SESSION['stocks'][$i];
+if($_SESSION['logged'] === True && !empty($_POST['quantity'])) {
+			if(in_array($_POST['idproduit'], $_SESSION['panier']['codeproduit'])) {
+				$key = array_search($_POST['idproduit'], $_SESSION['panier']['codeproduit']);
+				$key2 = array_search($_POST['idproduit'], $_SESSION['idproducts']);	
+				$_SESSION['panier']['quantite'][$key] = $_SESSION['panier']['quantite'][$key] + $_POST['quantity'];
+					if($_SESSION['panier']['quantite'][$key] > $_SESSION['stocks'][$key2]) {
+						$_SESSION['panier']['quantite'][$key] = $_SESSION['stocks'][$key2];
 					}
 				}
-				else {$_SESSION['panier']['codeproduit'][] = $_SESSION['idproducts'][$i];
-				$_SESSION['panier']['quantite'][] = $_POST[$buttoname];
+				else {
+					$_SESSION['panier']['codeproduit'][] = $_POST['idproduit'];
+					$_SESSION['panier']['quantite'][] = $_POST['quantity'];
+					$key = array_search($_POST['idproduit'], $_SESSION['panier']['codeproduit']);
+					$key2 = array_search($_POST['idproduit'], $_SESSION['idproducts']);	
+					if($_SESSION['panier']['quantite'][$key] > $_SESSION['stocks'][$key2]) {
+						$_SESSION['panier']['quantite'][$key] = $_SESSION['stocks'][$key2];
+					}
 				}
 				header('Location:../index.php');
 				exit();	 
 			}
-		}
-}
 else {
 	header("Location:../index.php?logged=false");
 	exit();

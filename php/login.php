@@ -59,6 +59,9 @@ else {
 		$_SESSION['panier']['codeproduit'] = array();
 		$_SESSION['panier']['quantite'] = array();
 		unset($_SESSION["error"]);
+		if($req['email'] === "fred@tfe.org") {
+			$_SESSION['admin'] = 1;
+		}
 		// Retour à la page d'accueil
 		header("Location:../index.php");
 
