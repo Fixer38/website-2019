@@ -16,7 +16,7 @@ session_start();
       <div class="form-style">
       <!-- changement du chemin vers /php/login.php si la page est l'index
       car inclusion du fichier dans toutes les pages -->
-      <?php if ($_SERVER['REQUEST_URI'] === '/tfe/' || strpos($_SERVER['REQUEST_URI'], 'index.php')) {
+      <?php if ($_SERVER['REQUEST_URI'] === '/tfe2/' || strpos($_SERVER['REQUEST_URI'], 'index.php')) {
         echo "<form action='./php/login.php' method='post'>";
       } 
       else {
@@ -24,7 +24,7 @@ session_start();
       }?>
       
         <span class="close">&times;</span>
-        <div id="legend">Connection</div>
+        <div id="legend">Connexion</div>
           <fieldset>
               <?php echo $_SESSION["error"]; unset($_SESSION["error"]);?>
               <label for="email">Email</label>
@@ -33,6 +33,7 @@ session_start();
               <input type="password" placeholder="Entrez votre mot de passe" name="pswd" maxlenght="64" required>
               <button type="submit" value="Connecter">Se connecter</button>
           </fieldset>
+          </form>
         </div>
       </div>
     </div>
