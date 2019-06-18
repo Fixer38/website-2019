@@ -1,18 +1,34 @@
-.absolute {
-    position: absolute;
-    top: 25%;
-    left: 22.5%;
+
+
+.street_hnumber {
+    grid-area: header1;
 }
+
+.localite_cp {
+    grid-area: header2;
+}
+.names {
+    grid-area: name;
+}
+
+.gap {
+    grid-area: gap;
+}
+
 .grid-container {
     display: inline-grid;
     grid-template-columns: 100px 100px 600px 100px 100px 100px;
     grid-gap: 7px;
     padding: 5px;
-    position: relative;
-    left: 50%;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+    min-height: 0px;
+    min-width: 0px;
+    position: absolute;    
+    left: 52.5%;
+    grid-template-areas: 
+    "name name header1 gap header2 header2";
+    -moz-transform: translateX(-50%) translateY(10%);
+    -webkit-transform: translateX(-50%) translateY(10%);
+    transform: translateX(-50%) translateY(10%);
     background-color: GhostWhite;
 }
 
@@ -21,7 +37,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     font-size: 20px;    
+}
+
+.val {
+    grid-column-start: 1;
+    grid-column-end: 6;
+}
+
+.grid-container .valid_button {
+    position: relative;
+	display: block;
+	padding: 19px 39px 19px 39px;
+	color: #FFF;
+	margin: 0 auto;
+	font-size: 18px;
+	text-align: center;
+	font-style: normal;
+	width: 100%;
+	background: #8E49E8;
+  	text-transform: uppercase;    
 }
 
 img.resize {
