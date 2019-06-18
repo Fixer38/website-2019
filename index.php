@@ -6,10 +6,11 @@ session_start();
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Inscription</title>
+    <title>20² Photo Print</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/registration.css">
     <link rel="stylesheet" type="text/css" href="./css/login-modal.css">
+    <link rel="stylesheet" type="text/css" href="./css/mountain-background.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
       .mySlides {display: None}
@@ -24,7 +25,7 @@ session_start();
   <?php include('./html/slideshow.php');?>
   <?php include('./html/login.php');?>
   <?php
-  if($_SERVER['REQUEST_URI'] === '/tfe/index.php?logged=false') {
+  if($_SERVER['REQUEST_URI'] === '/tfe2/index.php?logged=false') {
   echo "<script type='text/javascript'>document.getElementById('login-btn').click();</script>";
 }
 ?>
