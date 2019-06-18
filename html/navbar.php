@@ -5,14 +5,13 @@ session_start();
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <ul class="nav navbar-nav navbar-center">
-        <a class="navbar-brand" href="#">RGraphy</a>
+        <a class="navbar-brand" href="#">20² Photo Print</a>
       </ul>
       </div>
       <ul class="nav navbar-nav">
         <!-- changement des chemins vers les différentes pages si l'on click sur la navbar depuis l'index ou non -->
-        <?php if ($_SERVER['REQUEST_URI'] === '/tfe/' || $_SERVER['REQUEST_URI'] === '/tfe/index.php') {
+        <?php if ($_SERVER['REQUEST_URI'] === '/tfe2/' || strpos($_SERVER['REQUEST_URI'], 'index.php')) {
             echo "<li><a href='./index.php'>Home</a></li>
-            <li><a href='./html/contact.php'>Contact</a></li>
           </ul>
           <ul class='nav navbar-nav navbar-right'>";
             if ($_SESSION['logged'] === True) {
@@ -27,7 +26,6 @@ session_start();
         }
         else {
             echo "<li><a href='../index.php'>Home</a></li>
-            <li><a href='./contact.php'>Contact</a></li>
           </ul>
           <ul class='nav navbar-nav navbar-right'>";
           if ($_SESSION['logged'] === True) {
